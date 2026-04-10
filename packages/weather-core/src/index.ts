@@ -1,6 +1,8 @@
 export {
   fetchWeatherForecastForPrzemysl,
+  hourlyTimeToUtcMs,
   type FetchFn,
+  type FetchWeatherOptions,
 } from "./open-meteo.js";
 export {
   FORECAST_DAYS,
@@ -10,5 +12,7 @@ export {
 export {
   weatherDaySchema,
   weatherForecastResponseSchema,
+  weatherNowSchema,
+  shortTermPointSchema,
   type WeatherForecastResponse,
 } from "./schema.js";

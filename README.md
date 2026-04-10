@@ -1,6 +1,6 @@
 # arduino_weather
 
-Turborepo monorepo: Next.js 15 (App Router) + Hono API at **`GET /api`**, Open-Meteo forecast for **Przemyśl** (Subcarpathian Voivodeship, Poland): **today + next 7 days** (8 daily rows).
+Turborepo monorepo: Next.js 15 (App Router) + Hono API at **`GET /api`**, Open-Meteo forecast for **Przemyśl** (Subcarpathian Voivodeship, Poland): **now + next 24 h** (9 points, 3-hour steps) and **today + next 7 days** (8 daily rows).
 
 **Device client:** The stack is meant for an **Arduino board with an LCD** to poll the forecast over HTTP (**`GET /api`** on your deployed base URL, or locally while developing), parse the JSON, and render values on the screen. The web app in `apps/web` is an extra way to view the same data in a browser.
 
@@ -39,7 +39,13 @@ Deployments are driven by **Vercel’s Git integration**: pushes to the **produc
 
 ## API contract
 
-`GET /api` returns JSON: `location`, `days` (length **8**), `meta` (`forecastDays: 8`, `timezone`, `source: "open-meteo"`, `fetchedAt`).
+`GET /api` returns JSON:
+
+- `location` — name, region, country, latitude, longitude
+- `now` — `time` (ISO-8601 with offset), `temperatureC`, optional `weatherCode` (instant at request time, interpolated from hourly forecast)
+- `shortTerm` — **9** points: `offsetHours` **0, 3, …, 24**; each has `time`, `temperatureC`, optional `weatherCode` (linear interpolation between Open-Meteo hourly values)
+- `days` — length **8** (today + next 7 days), daily max/min, codes, precipitation
+- `meta` — `forecastDays: 8`, `shortTermStepHours: 3`, `shortTermHorizonHours: 24`, `timezone`, `source: "open-meteo"`, `fetchedAt`
 
 ## Stack notes
 

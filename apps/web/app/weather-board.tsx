@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import { TemperatureChartShell } from "./temperature-chart-shell";
 
 type DayRow = {
   date: string;
@@ -8,14 +9,32 @@ type DayRow = {
   precipitationSumMm: number;
 };
 
+type ShortTermRow = {
+  offsetHours: number;
+  time: string;
+  temperatureC: number;
+  weatherCode?: number;
+};
+
 type ApiOk = {
   location: {
     name: string;
     region: string;
     country: string;
   };
+  now: {
+    time: string;
+    temperatureC: number;
+    weatherCode?: number;
+  };
+  shortTerm: ShortTermRow[];
   days: DayRow[];
-  meta: { fetchedAt: string; timezone: string };
+  meta: {
+    fetchedAt: string;
+    timezone: string;
+    shortTermStepHours: number;
+    shortTermHorizonHours: number;
+  };
 };
 
 async function loadForecast(): Promise<ApiOk> {
@@ -41,38 +60,48 @@ export async function WeatherBoard() {
   }
 
   return (
-    <section aria-label="8-day forecast">
-      <h2>Forecast</h2>
-      <p>
-        <small>
-          Updated {data.meta.fetchedAt} ({data.meta.timezone})
-        </small>
-      </p>
-      <table>
-        <caption className="sr-only">
-          Daily weather for {data.location.name}, {data.location.country}
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Code</th>
-            <th scope="col">Max °C</th>
-            <th scope="col">Min °C</th>
-            <th scope="col">Precip. mm</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.days.map((d) => (
-            <tr key={d.date}>
-              <td>{d.date}</td>
-              <td>{d.weatherCode}</td>
-              <td>{d.temperatureMaxC.toFixed(1)}</td>
-              <td>{d.temperatureMinC.toFixed(1)}</td>
-              <td>{d.precipitationSumMm.toFixed(1)}</td>
+    <>
+      <section aria-label="Temperature for the next twenty-four hours in three-hour steps">
+        <TemperatureChartShell
+          shortTerm={data.shortTerm}
+          timezone={data.meta.timezone}
+        />
+      </section>
+
+      <section aria-label="8-day forecast">
+        <h2>Forecast</h2>
+        <p>
+          <small>
+            Now {data.now.temperatureC.toFixed(1)} °C · Updated{" "}
+            {data.meta.fetchedAt} ({data.meta.timezone})
+          </small>
+        </p>
+        <table>
+          <caption className="sr-only">
+            Daily weather for {data.location.name}, {data.location.country}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Code</th>
+              <th scope="col">Max °C</th>
+              <th scope="col">Min °C</th>
+              <th scope="col">Precip. mm</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
+          </thead>
+          <tbody>
+            {data.days.map((d) => (
+              <tr key={d.date}>
+                <td>{d.date}</td>
+                <td>{d.weatherCode}</td>
+                <td>{d.temperatureMaxC.toFixed(1)}</td>
+                <td>{d.temperatureMinC.toFixed(1)}</td>
+                <td>{d.precipitationSumMm.toFixed(1)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    </>
   );
 }

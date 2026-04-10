@@ -1,7 +1,27 @@
 :root {
   color-scheme: light dark;
-  font-family: system-ui, sans-serif;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
   line-height: 1.5;
+  --chart-line: oklch(0.72 0.14 250);
+  --chart-grid: oklch(0.55 0.03 260 / 0.35);
+  --chart-axis: oklch(0.88 0.02 260);
+  --chart-tooltip-bg: oklch(0.2 0.04 260 / 0.94);
+  --chart-tooltip-border: oklch(1 0 0 / 0.12);
+  --chart-tooltip-fg: oklch(0.97 0.01 260);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --chart-line: oklch(0.48 0.19 250);
+    --chart-grid: oklch(0.45 0.02 260 / 0.25);
+    --chart-axis: oklch(0.35 0.02 260);
+    --chart-tooltip-bg: oklch(0.99 0.01 260 / 0.96);
+    --chart-tooltip-border: oklch(0 0 0 / 0.1);
+    --chart-tooltip-fg: oklch(0.2 0.03 260);
+  }
 }
 
 body {
@@ -20,4 +40,95 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+.temp-chart-card {
+  margin: 1.75rem 0;
+  padding: 1.35rem 1.25rem 1.1rem;
+  border-radius: 1.1rem;
+  background: linear-gradient(
+    155deg,
+    oklch(0.28 0.05 270 / 0.55),
+    oklch(0.2 0.04 260 / 0.5)
+  );
+  border: 1px solid oklch(1 0 0 / 0.08);
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 0.06) inset,
+    0 24px 48px -28px oklch(0 0 0 / 0.65);
+  backdrop-filter: blur(14px);
+}
+
+@media (prefers-color-scheme: light) {
+  .temp-chart-card {
+    background: linear-gradient(
+      155deg,
+      oklch(0.97 0.02 260 / 0.92),
+      oklch(0.93 0.03 270 / 0.88)
+    );
+    border-color: oklch(0 0 0 / 0.06);
+    box-shadow:
+      0 1px 0 oklch(1 0 0 / 0.8) inset,
+      0 20px 40px -24px oklch(0.35 0.05 260 / 0.25);
+  }
+}
+
+.temp-chart-header {
+  margin-bottom: 0.65rem;
+}
+
+.temp-chart-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.temp-chart-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.72;
+}
+
+.temp-chart-surface {
+  width: 100%;
+  min-height: 280px;
+}
+
+.temp-chart-now-dot {
+  fill: var(--chart-line);
+  filter: drop-shadow(0 0 10px oklch(0.75 0.2 250 / 0.55));
+}
+
+.temp-chart-pulse-ring {
+  stroke: oklch(0.75 0.18 250 / 0.55);
+  stroke-width: 1.5;
+  animation: temp-chart-pulse 2.4s ease-out infinite;
+}
+
+.temp-chart-surface--placeholder {
+  min-height: 280px;
+  border-radius: 0.65rem;
+  background: oklch(0.5 0.04 260 / 0.12);
+  animation: temp-chart-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes temp-chart-shimmer {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes temp-chart-pulse {
+  0% {
+    r: 6;
+    opacity: 0.85;
+  }
+  70% {
+    r: 14;
+    opacity: 0;
+  }
+  100% {
+    r: 14;
+    opacity: 0;
+  }
 }

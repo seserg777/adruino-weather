@@ -7,7 +7,8 @@ export default function HomePage() {
     <main>
       <h1>Weather in Przemyśl</h1>
       <p>
-        Subcarpathian Voivodeship, Poland — today and the next 7 days (Open-Meteo).
+        Subcarpathian Voivodeship, Poland — next 24 hours (3-hour steps) and today
+        plus the next 7 days (Open-Meteo).
       </p>
       <WeatherBoard />
     </main>
