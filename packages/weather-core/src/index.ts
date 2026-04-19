@@ -16,3 +16,9 @@ export {
   shortTermPointSchema,
   type WeatherForecastResponse,
 } from "./schema.js";
+export {
+  deviceForecastSchema,
+  deviceShortPointSchema,
+  toDeviceForecast,
+  type DeviceForecast,
+} from "./device.js";
