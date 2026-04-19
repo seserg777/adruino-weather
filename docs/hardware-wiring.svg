@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560">
+  <rect width="1000" height="560" fill="#ffffff"/>
+  <text x="500" y="32" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#222">Arduino Uno R3 + I2C LCD 1602 + ESP8266 (ESP-01 style pins)</text>
+  <text x="500" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#444">TXD / RXD / VCC / GND / CH_PD per vendor pin tables (e.g. SunFounder)</text>
+
+  <!-- Arduino Uno -->
+  <g id="arduino">
+    <rect x="48" y="72" width="200" height="380" rx="6" fill="#1b6cac" stroke="#0d4a7a" stroke-width="2"/>
+    <text x="148" y="102" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#fff">Arduino Uno R3</text>
+    <text x="148" y="120" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#e3f2fd">Analog / Power / Digital</text>
+    <!-- Right-edge pin labels (connection side) -->
+    <g font-family="Consolas, monospace" font-size="11" fill="#fff">
+      <text x="195" y="148" text-anchor="end">A4 SDA</text>
+      <text x="195" y="168" text-anchor="end">A5 SCL</text>
+      <text x="195" y="208" text-anchor="end">5V</text>
+      <text x="195" y="228" text-anchor="end">GND</text>
+      <text x="195" y="308" text-anchor="end">D10 RX</text>
+      <text x="195" y="328" text-anchor="end">D11 TX</text>
+      <text x="195" y="388" text-anchor="end">3.3V</text>
+      <text x="195" y="418" text-anchor="end">GND</text>
+    </g>
+    <!-- Pin dots -->
+    <circle cx="248" cy="144" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="248" cy="164" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="248" cy="204" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="248" cy="224" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="248" cy="304" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="248" cy="324" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="248" cy="384" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="248" cy="414" r="4" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+  </g>
+
+  <!-- LCD I2C backpack -->
+  <g id="lcd">
+    <rect x="540" y="58" width="150" height="110" rx="4" fill="#2e7d32" stroke="#1b5e20" stroke-width="2"/>
+    <text x="615" y="88" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">LCD 1602 I2C</text>
+    <g font-family="Consolas, monospace" font-size="10" fill="#e8f5e9">
+      <text x="552" y="108">SDA</text>
+      <text x="552" y="126">SCL</text>
+      <text x="552" y="144">VCC</text>
+      <text x="552" y="162">GND</text>
+    </g>
+    <circle cx="536" cy="104" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="536" cy="122" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="536" cy="140" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="536" cy="158" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+  </g>
+
+  <!-- Level shifter -->
+  <g id="shifter">
+    <rect x="392" y="268" width="136" height="88" rx="4" fill="#6a1b9a" stroke="#4a148c" stroke-width="2"/>
+    <text x="460" y="292" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#fff">Level shifter</text>
+    <text x="460" y="308" text-anchor="middle" font-family="Consolas, monospace" font-size="9" fill="#e1bee7">5V to 3.3V (D11 to ESP RXD)</text>
+    <text x="404" y="332" font-family="Consolas, monospace" font-size="9" fill="#e1bee7">HV in</text>
+    <text x="488" y="332" font-family="Consolas, monospace" font-size="9" fill="#e1bee7">LV out</text>
+    <text x="432" y="350" text-anchor="middle" font-family="Consolas, monospace" font-size="9" fill="#e1bee7">GND</text>
+    <circle cx="384" cy="318" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="536" cy="318" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="460" cy="348" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+  </g>
+
+  <!-- ESP8266 module -->
+  <g id="esp">
+    <rect x="720" y="248" width="128" height="200" rx="4" fill="#0d47a1" stroke="#01579b" stroke-width="2"/>
+    <text x="784" y="272" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#fff">ESP8266 (ESP-01)</text>
+    <g font-family="Consolas, monospace" font-size="9" fill="#bbdefb">
+      <text x="728" y="290">TXD</text>
+      <text x="728" y="306">RXD</text>
+      <text x="728" y="338">VCC 3.3V</text>
+      <text x="728" y="356">GND</text>
+      <text x="728" y="386">CH_PD</text>
+    </g>
+    <circle cx="716" cy="288" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="716" cy="304" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="716" cy="334" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="716" cy="354" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+    <circle cx="716" cy="384" r="3.5" fill="#ffeb3b" stroke="#333" stroke-width="1"/>
+  </g>
+
+  <!-- Wires: orthogonal paths, fill="none" stroke -->
+  <g id="wires" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <!-- A4 SDA green -->
+    <path d="M 248 144 L 320 144 L 320 104 L 536 104" stroke="#2e7d32" stroke-width="3"/>
+    <!-- A5 SCL blue -->
+    <path d="M 248 164 L 340 164 L 340 122 L 536 122" stroke="#1565c0" stroke-width="3"/>
+    <!-- 5V to LCD VCC red -->
+    <path d="M 248 204 L 360 204 L 360 140 L 536 140" stroke="#c62828" stroke-width="3"/>
+    <!-- GND Uno upper to LCD GND black -->
+    <path d="M 248 224 L 300 224 L 300 158 L 536 158" stroke="#212121" stroke-width="3"/>
+    <!-- ESP TXD to D10 teal -->
+    <path d="M 716 288 L 276 288 L 276 304 L 248 304" stroke="#00897b" stroke-width="3"/>
+    <!-- D11 to HV orange -->
+    <path d="M 248 324 L 330 324 L 330 318 L 384 318" stroke="#ef6c00" stroke-width="3"/>
+    <!-- LV to ESP RXD purple -->
+    <path d="M 536 318 L 716 318 L 716 304" stroke="#7b1fa2" stroke-width="3"/>
+    <!-- 3.3V to VCC and CH_PD red branches -->
+    <path d="M 248 384 L 680 384 L 680 334 L 716 334" stroke="#c62828" stroke-width="3"/>
+    <path d="M 680 384 L 716 384" stroke="#c62828" stroke-width="3"/>
+    <!-- GND lower: Uno to shifter and ESP -->
+    <path d="M 248 414 L 370 414 L 370 348 L 460 348" stroke="#212121" stroke-width="3"/>
+    <path d="M 370 414 L 700 414 L 700 354 L 716 354" stroke="#212121" stroke-width="3"/>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#333">
+    <text x="48" y="500" font-weight="600">Wire colors</text>
+    <rect x="48" y="508" width="14" height="10" fill="#2e7d32"/><text x="68" y="517">SDA (A4)</text>
+    <rect x="148" y="508" width="14" height="10" fill="#1565c0"/><text x="168" y="517">SCL (A5)</text>
+    <rect x="248" y="508" width="14" height="10" fill="#c62828"/><text x="268" y="517">5V / 3.3V</text>
+    <rect x="348" y="508" width="14" height="10" fill="#212121"/><text x="368" y="517">GND</text>
+    <rect x="428" y="508" width="14" height="10" fill="#00897b"/><text x="448" y="517">TXD to D10</text>
+    <rect x="548" y="508" width="14" height="10" fill="#ef6c00"/><text x="568" y="517">D11 to HV</text>
+    <rect x="648" y="508" width="14" height="10" fill="#7b1fa2"/><text x="668" y="517">LV to RXD</text>
+  </g>
+</svg>

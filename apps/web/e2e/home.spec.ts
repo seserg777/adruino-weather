@@ -8,6 +8,13 @@ test.describe("home page", () => {
       page.getByRole("heading", { level: 1, name: "Weather in Przemyśl" }),
     ).toBeVisible();
 
+    await expect(
+      page.getByRole("region", {
+        name: "Temperature for the next twenty-four hours in three-hour steps",
+      }),
+    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Next 24 hours" })).toBeVisible();
+
     const forecast = page.getByRole("region", { name: "8-day forecast" });
     await expect(forecast).toBeVisible();
     await expect(forecast.getByRole("heading", { name: "Forecast" })).toBeVisible();

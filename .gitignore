@@ -46,3 +46,6 @@ Thumbs.db
 !.vscode/extensions.json
 
 .osp/
+
+# Arduino / firmware (copy from secrets.h.example)
+firmware/**/secrets.h
